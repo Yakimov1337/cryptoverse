@@ -25,7 +25,7 @@ const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timeperiod, setTimeperiod] = useState("7d");
+  const [timeperiod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
     coinId,
@@ -104,13 +104,47 @@ const CryptoDetails = () => {
   ];
 
   return (
-  <Col className="coin-detail-container">
-    <Col className="coin-heading-container">
-      <Title level={2} className="coin-name">
-        {cryptoDetails.name} ({cryptoDetails.symbol})Price
-      </Title>
+    <Col className="coin-detail-container">
+      <Col className="coin-heading-container">
+        <Title level={2} className="coin-name">
+          {cryptoDetails.name} ({cryptoDetails.symbol})Price
+        </Title>
+        <p>
+          {cryptoDetails.name} live price in US dollars. View value statistics,
+          market cap and supply.
+        </p>
+      </Col>
+      <Select
+        defaultValue="7d"
+        className="select-timeperiod"
+        placeholder="Select Time"
+        onChange={(value) => setTimePeriod(value)}
+      >
+        {time.map((date) => (
+          <Option key={data}>{date}</Option>
+        ))}
+      </Select>
+      <Col className="stats-container">
+        <Col className="coin-value-statistics">
+          <Col className="coin-value-statistics-heading">
+            <Title level={3} className="coin-details-heading">
+              {cryptoDetails.name} Value Statistics
+            </Title>
+            <p>An overview showing the stats of {cryptoDetails.name}</p>
+            {stats.map(({ icon, title, value }) => (
+              <Col className="coin-stats">
+                <Col className="coin-stats-name">
+                  <Text>{icon}</Text>
+                  <Text>{title}</Text>
+                </Col>
+                <Text className="stats">{value}</Text>
+              </Col>
+            ))}
+          </Col>
+        </Col>
+      </Col>
     </Col>
-  </Col>)
+  );
 };
 
 export default CryptoDetails;
