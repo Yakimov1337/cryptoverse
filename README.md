@@ -11,5 +11,5 @@ trade volume over last 24 hours, or market capitalizations.
 
 # Links
 
-Firebase deployed: 
+Firebase deployed: [https://cryptoverse-29cd7.web.app/]
 Github link: [https://github.com/Yakimov1337/cryptoverse]
