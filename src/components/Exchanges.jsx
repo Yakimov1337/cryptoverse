@@ -8,6 +8,7 @@ import Loader from './Loader';
 
 const { Text } = Typography;
 const { Panel } = Collapse;
+const { Title } = Typography;
 
 const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
@@ -23,6 +24,9 @@ const Exchanges = () => {
         <Col span={6}>Markets</Col>
         <Col span={6}>Change</Col>
       </Row>
+      <Title>
+        Currently Unavailable 
+      </Title>
       <Row>
         {/* {exchangesList.map((exchange) => (
           <Col span={24}>
